@@ -1,0 +1,26 @@
+{% extends 'Teacher/teacher_dashboard.html' %}
+{% load static %}
+{% block title %}View Catagories{% endblock %}
+{% block body %}
+    <div class="container">
+        {% if data %}
+            <table class="table table-hover">
+                <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+                {% for i in data %}
+                    <tr>
+                        <td>{{ i.Category_Name }}</td>
+                        <td><img src="{% static 'media' %}/{{ i.Image }}" width="150" height="80" alt=""></td>
+                        <td><a role="button" class="btn btn-success" href="{% url 'Update Categories' i.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h3>No Categories Record Found</h3>
+        {% endif %}
+    </div>
+{% endblock %}

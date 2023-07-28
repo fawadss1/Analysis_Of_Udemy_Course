@@ -1,0 +1,86 @@
+{% extends 'Teacher/teacher_dashboard.html' %}
+{% block title %}Category{% endblock %}
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-5">Add Cource</h3>
+        {% if courceCat %}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Cource Category</label>
+                            <select class="form-control" id="name" name="courceCat" required>
+                                <option value="">Select Your Cource Category</option>
+                                {% for i in courceCat %}
+                                    <option value="{{ i.Category_Name }}">{{ i.Category_Name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Title</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your Cource Title"
+                                   name="title" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Price</label>
+                            <input type="number" class="form-control" id="name" placeholder="Enter your Cource Price"
+                                   name="price" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Number Of Lecturers</label>
+                            <input type="number" class="form-control" id="name"
+                                   placeholder="Enter your Cource No Of Lec"
+                                   name="no_of_lec" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Course Level</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your Cource Level"
+                                   name="course_level" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Content Duration</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your Content Duration"
+                                   name="content_duration" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Published</label>
+                            <input type="date" class="form-control" id="name" placeholder="Date of Published"
+                                   name="published" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Subject</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Subject" name="subject"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Image</label>
+                            <input type="file" class="form-control" id="name" name="image" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Now</button>
+            </form>
+        {% else %}
+            <h3>Please Add Cource Category First</h3>
+        {% endif %}
+    </div>
+{% endblock %}

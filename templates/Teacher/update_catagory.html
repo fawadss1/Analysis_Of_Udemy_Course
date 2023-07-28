@@ -1,0 +1,49 @@
+{% extends 'Teacher/teacher_dashboard.html' %}
+{% load static %}
+{% block title %}Update Category{% endblock %}
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-5">Update Category</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your Category Name" name="name"
+                       value="{{ data.Category_Name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Image</label>
+                <input type="file" class="form-control" id="email" placeholder="Upload Your Image" name="image"
+                       value="{{ data.Image }}" required>
+            </div>
+            <img src="{% static 'media' %}/{{ data.Image }}" width="300" height="200" alt="Img">
+            <p>Image Preview</p>
+            <button type="submit" class="mt-5 btn btn-primary">Update</button>
+            <button type="button" class="mt-5 btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete
+            </button>
+        </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Do U Want To Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ data.Category_Name }}" name="delCategory">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

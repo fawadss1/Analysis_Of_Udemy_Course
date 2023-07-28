@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center">Sign Up</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                       name="email" placeholder="Enter Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                       name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirm-password" name="confrimPassword"
+                                       placeholder="Confirm Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Address</label>
+                                <input type="text" class="form-control" id="password" placeholder="Address"
+                                       name="address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Are you a teacher or a student?</label>
+                                <select class="form-control" id="role" name="role" required>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="Student">Student</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Add Now</button>
+                            <a role="button" class="mt-3 btn btn-danger btn-block" href="{% url 'SignIn' %}">Back To
+                                Login</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

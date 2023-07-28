@@ -1,0 +1,44 @@
+{% extends 'Teacher/teacher_dashboard.html' %}
+{% load static %}
+{% block title %}View Courses{% endblock %}
+{% block body %}
+    <div class="mx-2">
+        {% if data %}
+            <table class="table">
+                <tr>
+                    <th>S.No</th>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>No. Of Lec</th>
+                    <th>Course Level</th>
+                    <th>Content Duration</th>
+                    <th>Timestamp</th>
+                    <th>Published</th>
+                    <th>Subject</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+                {% for i in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.Course_Category }}</td>
+                        <td>{{ i.Course_Title }}</td>
+                        <td>{{ i.Price }}</td>
+                        <td>{{ i.Number_of_lecturers }}</td>
+                        <td>{{ i.Course_Level }}</td>
+                        <td>{{ i.Content_Duration }}</td>
+                        <td>{{ i.Timestamp }}</td>
+                        <td>{{ i.Published }}</td>
+                        <td>{{ i.Subject }}</td>
+                        <td><img src="{% static 'media' %}/{{ i.Image }}" width="150" height="80" alt=""></td>
+                        <td><a role="button" class="btn btn-success" href="{% url 'Update Cource' i.id %}">Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h3>No Cources Record Found</h3>
+        {% endif %}
+    </div>
+{% endblock %}

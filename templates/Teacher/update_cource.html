@@ -1,0 +1,109 @@
+{% extends 'Teacher/teacher_dashboard.html' %}
+{% load static %}
+{% block title %}Update Course{% endblock %}
+{% block body %}
+    <div class="container">
+        <h3 class="text-center mt-5">Update Cource</h3>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Cource Category</label>
+                        <select class="form-control" id="name" name="courceCat" required>
+                            <option value="{{ data.Course_Category }}" selected>{{ data.Course_Category }}</option>
+                            {% for i in cat %}
+                                <option value="{{ i.Category_Name }}">{{ i.Category_Name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Title</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your Cource Title"
+                               name="title" value="{{ data.Course_Title }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Price</label>
+                        <input type="number" class="form-control" id="name" placeholder="Enter your Cource Price"
+                               name="price" value="{{ data.Price }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Number Of Lecturers</label>
+                        <input type="number" class="form-control" id="name"
+                               placeholder="Enter your Cource No Of Lec" name="no_of_lec"
+                               value="{{ data.Number_of_lecturers }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Course Level</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your Cource Level"
+                               name="course_level" value="{{ data.Course_Level }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Content Duration</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your Content Duration"
+                               name="content_duration" value="{{ data.Content_Duration }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Published ({{ data.Published }})</label>
+                        <input type="date" class="form-control" id="name" placeholder="Date of Published"
+                               name="published">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Subject</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Subject" name="subject"
+                               value="{{ data.Subject }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Image</label>
+                        <input type="file" class="form-control" id="name" name="image" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'media' %}/{{ data.Image }}" width="300" height="200" alt="Img">
+                    <p>Image Preview</p>
+                </div>
+            </div>
+            <button type="submit" class="mb-5 btn btn-primary">Update</button>
+            <button type="button" class="mb-5 btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete
+            </button>
+        </form>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Do U Want To Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ data.Course_Title }}" name="delCource">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
