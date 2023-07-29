@@ -1,0 +1,33 @@
+{% extends 'Teacher/base.html' %}
+{% load static %}
+{% block title %}Feed backs{% endblock %}
+{% block body %}
+    {% if feedbacks %}
+        <div class="container">
+            <h3 class="text-center mb-5">Students Feedbacks</h3>
+            <table class="table">
+                <tr>
+                    <th>S.No</th>
+                    <th>Date</th>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Comments</th>
+                    <th>Rating</th>
+                </tr>
+                {% for i in feedbacks %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.Date }}</td>
+                        <td>{{ i.Student.Name }}</td>
+                        <td>{{ i.Course.Course_Title }}</td>
+                        <td>{{ i.Comments }}</td>
+                        <td>{{ i.Rating }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    {% else %}
+        <h3 class="text-center mb-5">You Don't Have Any Fee Payment Record</h3>
+    {% endif %}
+{% endblock %}

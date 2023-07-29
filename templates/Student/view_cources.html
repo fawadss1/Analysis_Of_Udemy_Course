@@ -1,41 +1,30 @@
-{% extends 'Student/student_dashboard.html' %}
+{% extends 'Student/base.html' %}
 {% load static %}
-{% block title %}View Catagories{% endblock %}
+{% block title %}View Cources{% endblock %}
 {% block body %}
-    <div class="container">
+    <div class="mx-3 my-3">
         {% if data %}
-            <table class="table table-hover">
-                <tr>
-                    <th>S.No</th>
-                    <th>Category</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>No. Of Lec</th>
-                    <th>Course Level</th>
-                    <th>Content Duration</th>
-                    <th>Timestamp</th>
-                    <th>Published</th>
-                    <th>Subject</th>
-                    <th>Image</th>
-                </tr>
-                {% for i in data %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ i.Course_Category }}</td>
-                        <td>{{ i.Course_Title }}</td>
-                        <td>{{ i.Price }}</td>
-                        <td>{{ i.Number_of_lecturers }}</td>
-                        <td>{{ i.Course_Level }}</td>
-                        <td>{{ i.Content_Duration }}</td>
-                        <td>{{ i.Timestamp }}</td>
-                        <td>{{ i.Published }}</td>
-                        <td>{{ i.Subject }}</td>
-                        <td><img src="{% static 'media' %}/{{ i.Image }}" width="150" height="80" alt=""></td>
-                    </tr>
-                {% endfor %}
-            </table>
+            <div class="container">
+                <h3 class="text-center mb-5"> {{ courseCat.Course_Category|title }} Category</h3>
+                <div class="row">
+                    {% for i in data %}
+                        <div class="col-md-4">
+                            <div class="card mb-3" style="width: 18rem;">
+                                <img class="card-img-top" src="{% static 'media' %}/{{ i.Image }}" height="200"
+                                     alt="Category Img">
+                                <div class="card-body bg-primary">
+                                    <h5 class="card-title text-light text-center">{{ i.Course_Title|title }}</h5>
+                                    <p class="card-text text-light text-center">Cost: {{ i.Price }}</p>
+                                    <a href="{% url 'View Course Detail' i.id %}"
+                                       class="btn btn-danger rounded-pill btn-block">Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         {% else %}
-            <h3>No Categories Record Found</h3>
+            <h3 class="text-center mt-5">No Cource Record Found At This Category</h3>
         {% endif %}
     </div>
 {% endblock %}

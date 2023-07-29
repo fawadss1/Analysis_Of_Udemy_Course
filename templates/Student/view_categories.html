@@ -1,0 +1,28 @@
+{% extends 'Student/base.html' %}
+{% load static %}
+{% block title %}Categories{% endblock %}
+{% block body %}
+    {% if categories %}
+        <div class="container">
+            <h3 class="text-center mb-5">Select Course Categories</h3>
+            <div class="row">
+                {% for i in categories %}
+                    <div class="col-md-4">
+                        <div class="card mb-5" style="width: 18rem;">
+                            <img class="card-img-top" src="{% static 'media' %}/{{ i.Image }}" height="200"
+                                 alt="Category Img">
+                            <div class="card-body bg-secondary">
+                                <h5 class="card-title text-light text-center">{{ i.Category_Name|title }}</h5>
+                                <p class="card-text"></p>
+                                <a href="{% url 'View Cources Std' i.id %}"
+                                   class="btn btn-danger rounded-pill btn-block">View</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <h3 class="text-center mb-5">No Course Categories Found</h3>
+    {% endif %}
+{% endblock %}

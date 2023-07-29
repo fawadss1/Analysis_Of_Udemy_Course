@@ -1,0 +1,107 @@
+{% extends 'Student/base.html' %}
+{% load static %}
+{% block title %}View Course Detail{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
+    <div class="container">
+        <form method="POST" id="subscribeForm">
+            {% csrf_token %}
+            <input type="hidden" name="subscribe">
+        </form>
+        <h3 class="text-center my-3">Course Detail</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'media' %}/{{ course.Image }}" alt="Product Image" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h2>Course Name: {{ course.Course_Title }}</h2>
+                <h5>Price: {{ course.Price }}</h5>
+                <h5>Category: {{ course.Course_Category }}</h5>
+                <h5>No of Lec.: {{ course.Number_of_lecturers }}</h5>
+                <h5>Course Level: {{ course.Course_Level }}</h5>
+                <h5>Content Duration: {{ course.Content_Duration }}</h5>
+                <h5>Published: {{ course.Published }}</h5>
+                <h5>Time Stamp: {{ course.Timestamp }}</h5>
+                <h5>Date: {{ course.Date }}</h5>
+                <h5>Subject: {{ course.Subject }}</h5>
+                <h5>No of Subscribers: {{ course.No_of_Subscribers }}</h5>
+                <h5>No of Reviews: {{ course.No_of_Reviews }}</h5>
+                <a role="button" class="btn btn-secondary" href="{% url 'Pay Fee' course.id %}">Pay Fee</a>
+                <button type="submit" class="ml-3 btn btn-success" id="subscribebtn">Subscribe</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <form id="feedback-form" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="message">Comments</label>
+                        <textarea class="form-control" id="message" name="comments" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <span class="fa fa-star" onclick="rate(1)"></span>
+                        <span class="fa fa-star" onclick="rate(2)"></span>
+                        <span class="fa fa-star" onclick="rate(3)"></span>
+                        <span class="fa fa-star" onclick="rate(4)"></span>
+                        <span class="fa fa-star" onclick="rate(5)"></span>
+                    </div>
+                    <input type="hidden" name="rating" id="rating" value="">
+                    <button type="submit" class="btn btn-success mb-3">Submit Review</button>
+                </form>
+                {% for i in reviews %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ i.Student|title }}</h5>
+                            <p class="card-text">{{ i.Comments }}</p>
+                            <div id="reviewStarsContainer"></div>
+                            <i>{{ i.Date }}</i>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            if ("{{ subsData }}" != '&lt;QuerySet []&gt;')
+                $('#subscribebtn').addClass('btn-danger').text('Unsubscribe')
+            else
+                $('#subscribebtn').removeClass('btn-danger')
+        });
+
+        $('#subscribebtn').click(function () {
+            $('#subscribeForm').submit()
+        });
+
+        function rate(rating) {
+            const stars = document.getElementsByClassName('fa fa-star');
+            for (let i = 0; i < stars.length; i++) {
+                if (i < rating) stars[i].classList.add('checked');
+                else stars[i].classList.remove('checked');
+            }
+            document.getElementById('rating').value = rating;
+        }
+    </script>
+
+    {% for i in reviews %}
+        <script>
+            const rating = {{ i.Rating }};
+            const container = document.getElementById("reviewStarsContainer");
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement("span");
+                star.classList.add("fa", "fa-star", "checked");
+                if (i > rating) {
+                    star.classList.remove("checked");
+                }
+                container.appendChild(star);
+            }
+        </script>
+    {% endfor %}
+
+{% endblock %}

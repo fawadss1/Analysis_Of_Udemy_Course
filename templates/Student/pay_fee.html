@@ -1,0 +1,52 @@
+{% extends 'Student/base.html' %}
+{% load static %}
+{% block title %}Pay Fee{% endblock %}
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center">Enter Your Payment Detial</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <input type="text" class="form-control" id="course" value="{{ course.Course_Title }}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text" class="form-control" id="price" value="{{ course.Price }}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="duration">Duration</label>
+                        <input type="text" class="form-control" id="duration" value="{{ course.Content_Duration }}"
+                               readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" value="{{ stdObj.Name|title }}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="iban">IBAN</label>
+                        <input type="number" class="form-control" id="iban" name="iban" placeholder="Enter Your IBAN">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" class="form-control" id="amount" name="amount"
+                               placeholder="Enter the Amount to pay">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Pay Now</button>
+        </form>
+    </div>
+{% endblock %}

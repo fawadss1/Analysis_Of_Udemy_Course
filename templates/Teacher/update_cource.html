@@ -1,7 +1,13 @@
-{% extends 'Teacher/teacher_dashboard.html' %}
+{% extends 'Teacher/base.html' %}
 {% load static %}
 {% block title %}Update Course{% endblock %}
 {% block body %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
     <div class="container">
         <h3 class="text-center mt-5">Update Cource</h3>
         <form method="POST" enctype="multipart/form-data">
@@ -56,33 +62,60 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="name">Published ({{ data.Published }})</label>
-                        <input type="date" class="form-control" id="name" placeholder="Date of Published"
-                               name="published">
+                        <label for="name">Published</label>
+                        <input type="text" class="form-control" id="name" value="{{ data.Published }}" name="published"
+                               required>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="timeStam">Time Stamp</label>
+                        <input type="text" class="form-control" id="timeStam" placeholder="Enter Time Stamp"
+                               name="timeStamp" value="{{ data.Timestamp }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="name">Subject</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Subject" name="subject"
+                        <label for="date">Date Curr.({{ data.Date }})</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" class="form-control" id="subject" placeholder="Enter Subject" name="subject"
                                value="{{ data.Subject }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="name">Image</label>
-                        <input type="file" class="form-control" id="name" name="image" required>
+                        <label for="image">Image</label>
+                        <input type="file" class="form-control" id="image" name="image" required>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="{% static 'media' %}/{{ data.Image }}" width="300" height="200" alt="Img">
-                    <p>Image Preview</p>
+                    <div class="form-group">
+                        <button type="button" class="mt-4 btn btn-primary" data-toggle="modal" data-target="#imagePreview">
+                            View Image
+                        </button>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="mb-5 btn btn-primary">Update</button>
             <button type="button" class="mb-5 btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete
             </button>
         </form>
+    </div>
+
+    <div class="modal" id="imagePreview">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="{% static 'media' %}/{{ data.Image }}" width="450" height="300" alt="Img">
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

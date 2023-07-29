@@ -1,8 +1,9 @@
-{% extends 'Teacher/teacher_dashboard.html' %}
+{% extends 'Teacher/base.html' %}
 {% load static %}
 {% block title %}View Courses{% endblock %}
 {% block body %}
     <div class="mx-2">
+        <h3 class="text-center my-3">View Cources</h3>
         {% if data %}
             <table class="table">
                 <tr>
@@ -13,10 +14,13 @@
                     <th>No. Of Lec</th>
                     <th>Course Level</th>
                     <th>Content Duration</th>
-                    <th>Timestamp</th>
                     <th>Published</th>
+                    <th>Time-Stamp</th>
+                    <th>Date</th>
                     <th>Subject</th>
                     <th>Image</th>
+                    <th>No. Subsribers</th>
+                    <th>No. Reviews</th>
                     <th>Actions</th>
                 </tr>
                 {% for i in data %}
@@ -28,12 +32,14 @@
                         <td>{{ i.Number_of_lecturers }}</td>
                         <td>{{ i.Course_Level }}</td>
                         <td>{{ i.Content_Duration }}</td>
-                        <td>{{ i.Timestamp }}</td>
                         <td>{{ i.Published }}</td>
+                        <td>{{ i.Timestamp }}</td>
+                        <td>{{ i.Date }}</td>
                         <td>{{ i.Subject }}</td>
                         <td><img src="{% static 'media' %}/{{ i.Image }}" width="150" height="80" alt=""></td>
-                        <td><a role="button" class="btn btn-success" href="{% url 'Update Cource' i.id %}">Edit</a>
-                        </td>
+                        <td>{{ i.No_of_Subscribers }}</td>
+                        <td>{{ i.No_of_Reviews }}</td>
+                        <td><a role="button" class="btn btn-success" href="{% url 'Update Cource' i.id %}">Edit</a></td>
                     </tr>
                 {% endfor %}
             </table>

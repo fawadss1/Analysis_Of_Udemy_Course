@@ -4,24 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Student Dashboard | {% block title %}{% endblock %}</title>
-
+    <title>Teacher Dashboard | {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"><b>Student DashBoard</b></a>
+    <a class="navbar-brand" href="#"><b>Teacher DashBoard</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'View Categories Std' %}">View Categories</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Catagories</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'Add Category' %}">Add Catagory</a>
+                    <a class="dropdown-item" href="{% url 'View Categories' %}">View Catagories</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Cources Detail</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'Add Cource' %}">Add Cource</a>
+                    <a class="dropdown-item" href="{% url 'View Cource' %}">View Cources</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'View Cources Std' %}">View Cources</a>
+                <a class="nav-link" href="{% url 'View Feebacks' %}">Feedbacks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'View Paid Fee' %}">Fees paid</a>
             </li>
         </ul>
         <form class="my-2 my-lg-0">

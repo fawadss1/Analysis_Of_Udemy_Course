@@ -1,10 +1,10 @@
-{% extends 'Teacher/teacher_dashboard.html' %}
+{% extends 'Teacher/base.html' %}
 {% load static %}
 {% block title %}Update Category{% endblock %}
 {% block body %}
     <div class="container">
         <h3 class="text-center mt-5">Update Category</h3>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Name</label>

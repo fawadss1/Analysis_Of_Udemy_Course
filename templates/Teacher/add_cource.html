@@ -1,5 +1,5 @@
-{% extends 'Teacher/teacher_dashboard.html' %}
-{% block title %}Category{% endblock %}
+{% extends 'Teacher/base.html' %}
+{% block title %}Add Course{% endblock %}
 {% block body %}
     <div class="container">
         <h3 class="text-center mt-5">Add Cource</h3>
@@ -58,21 +58,35 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">Published</label>
-                            <input type="date" class="form-control" id="name" placeholder="Date of Published"
+                            <input type="text" class="form-control" id="name" placeholder="Enter Published"
                                    name="published" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">Subject</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter Subject" name="subject"
-                                   required>
+                            <label for="name">Time Stamp</label>
+                            <input type="text" class="form-control" id="timeStamp" placeholder="Enter Time Stamp"
+                                   name="timeStamp" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">Image</label>
-                            <input type="file" class="form-control" id="name" name="image" required>
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Enter Subject"
+                                   name="subject"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" class="form-control" id="image" name="image" required>
                         </div>
                     </div>
                 </div>
